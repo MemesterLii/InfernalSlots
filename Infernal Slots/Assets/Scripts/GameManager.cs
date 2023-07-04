@@ -33,4 +33,9 @@ public class GameManager : MonoBehaviour
             canSpin = true;
         }
     }
+
+    public void SpinReceived()
+    {
+
+    }
 }

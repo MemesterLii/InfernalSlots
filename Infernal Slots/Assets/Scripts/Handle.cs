@@ -5,11 +5,12 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Handle : MonoBehaviour
 {
-    [SerializeField] XRGrabInteractable handleEnd;
+    [SerializeField] XRGrabInteractable handle;
+    [SerializeField] Transform handleTransform;
 
     private void Awake()
     {
-        handleEnd.enabled = false;
+        handle.enabled = false;
     }
 
     // Start is called before the first frame update
@@ -26,11 +27,12 @@ public class Handle : MonoBehaviour
 
     public void EnableGrab()
     {
-        handleEnd.enabled = true;
+        handle.enabled = true;
     }
 
     void DisableGrab()
     {
-        handleEnd.enabled = false;
+        handleTransform.rotation = Quaternion.Euler(0, 0, 0);
+        handle.enabled = false;
     }
 }

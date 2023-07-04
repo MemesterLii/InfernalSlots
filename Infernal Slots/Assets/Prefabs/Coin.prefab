@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3923129494006819850}
   - component: {fileID: 6099027244314503628}
   - component: {fileID: 4858937125116490324}
+  - component: {fileID: -1458489714580168195}
   m_Layer: 8
   m_Name: Coin
   m_TagString: Coin
@@ -252,6 +253,20 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &-1458489714580168195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5669814326032160397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b5aded6bfd45644582b0b14ed010eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shine: {fileID: 1896662631938861489}
+  rb: {fileID: 6099027244314503628}
 --- !u!1 &5713472530445415548
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +310,7 @@ GameObject:
   - component: {fileID: 1896662631938861489}
   - component: {fileID: 6941850136562702829}
   - component: {fileID: 1811537529849206472}
+  - component: {fileID: 1170895134}
   m_Layer: 8
   m_Name: Shine
   m_TagString: Untagged
@@ -5216,3 +5232,23 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1170895134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797579360380234052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}

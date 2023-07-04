@@ -7,6 +7,7 @@ TagManager:
   - Coin
   - CoinCollider
   - Teleport
+  - CoinBucket
   layers:
   - Default
   - TransparentFX
