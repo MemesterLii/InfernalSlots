@@ -5,11 +5,19 @@ using UnityEngine.InputSystem;
 
 public class HandAnimation : MonoBehaviour
 {
-    [SerializeField] InputActionProperty pinch;
-    [SerializeField] InputActionProperty fist;
+    //Two inputs that the player can use to animate the hands (trigger and grip respectively)
+    [SerializeField] InputActionProperty trigger;
+    [SerializeField] InputActionProperty grip;
+
+    //Animator. Controls the animations based on inputed values from player controllers
     [SerializeField] Animator animator;
-    string trigger = "Trigger";
-    string grip = "Grip";
+
+    //Grip audio
+    [SerializeField] AudioSource source;
+
+    //Input name variables
+    string pinch = "Trigger";
+    string fist = "Grip";
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +28,17 @@ public class HandAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float triggerValue = pinch.action.ReadValue<float>();
-        animator.SetFloat(trigger, triggerValue);
+        //Always read the value of the trigger on the player's controller and tell the animator to animate the pinch animation accordingly
+        float triggerValue = trigger.action.ReadValue<float>();
+        animator.SetFloat(pinch, triggerValue);
 
-        float gripValue = fist.action.ReadValue<float>();
-        animator.SetFloat (grip, gripValue);
+        //Always read the value of the trigger on the player's controller and tell the animator to animate the pinch animation accordingly
+        float gripValue = grip.action.ReadValue<float>();
+        animator.SetFloat(fist, gripValue);
+
+        if (!grip.action.IsPressed())
+        {
+            source.Play();
+        }
     }
 }
