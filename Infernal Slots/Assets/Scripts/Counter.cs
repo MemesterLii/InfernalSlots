@@ -13,6 +13,7 @@ public class Counter : MonoBehaviour
     //The text on the slot machine displaying the player's debt and a name variable for "Coin"
     [SerializeField] TextMeshPro debt;
     string coin = "Coin";
+    string soulCoin = "SoulCoin";
 
     void Awake()
     {
@@ -38,7 +39,11 @@ public class Counter : MonoBehaviour
         //and pass the coin in as the argument
         if (other.gameObject.CompareTag(coin))
         {
-            gameManager.CoinInserted(other.gameObject);
+            gameManager.CoinInserted(other.gameObject, false);
+        }
+        if (other.gameObject.CompareTag(soulCoin))
+        {
+            gameManager.CoinInserted(other.gameObject, true);
         }
     }
 
@@ -47,5 +52,10 @@ public class Counter : MonoBehaviour
     {
         source.Play();
         debt.text = "Debt: " + remainingDebt + " Coins";
+        if (remainingDebt <= 0)
+        {
+            debt.text = "A Winner is You";
+            gameManager.GameOver(true);
+        }
     }
 }

@@ -15,14 +15,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] Handle handle;
     [SerializeField] Reel[] reels;
 
+    [SerializeField] FireworkLauncher launcher;
+    [SerializeField] GameObject ascensionLight;
+    [SerializeField] Rigidbody playerRb;
+    [SerializeField] FadeIn winScreen;
+    int ascensionRate = 2;
+
     //The coin prefab and coin spawn points
     [SerializeField] GameObject coinPrefab;
     [SerializeField] GameObject[] coinSpawnPoints;
 
-
     // Start is called before the first frame update
     void Start()
     {
+        ascensionLight.SetActive(false);
+
         //Give the player 10 coins to start off with
         SpawnCoins(10);
     }
@@ -34,15 +41,23 @@ public class GameManager : MonoBehaviour
     }
 
     //Once a coin has been inserted into the coin counter, this function will run
-    public void CoinInserted(GameObject coin)
+    public void CoinInserted(GameObject coin, bool instaWin)
     {
         //If there is not already a coin inserted, then destroy the given coin, decrease debt by 1 coin,
         //update the debt display, allow the player to pull the handle, and register that a coin has been inserted
         if (!coinInserted)
         {
             Destroy(coin);
-            remainingDebt -= 1;
-            coinCounter.UpdateDebt(remainingDebt);
+            if (instaWin)
+            {
+                remainingDebt = 0;
+                coinCounter.UpdateDebt(remainingDebt);
+            }
+            else
+            {
+                remainingDebt -= 1;
+                coinCounter.UpdateDebt(remainingDebt);
+            }
 
             handle.EnableGrab();
             coinInserted = true;
@@ -105,5 +120,24 @@ public class GameManager : MonoBehaviour
             GameObject coin = Instantiate(coinPrefab, coinSpawnPoints[spawnLocation].transform.position, coinSpawnPoints[spawnLocation].transform.rotation);
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void GameOver(bool playerVictorious)
+    {
+        if (playerVictorious)
+        {
+            launcher.SetOff();
+            StartCoroutine(Ascension());
+        }
+    }
+
+    IEnumerator Ascension()
+    {
+        yield return new WaitForSeconds(5);
+        ascensionLight.SetActive(true);
+        playerRb.useGravity = false;
+        playerRb.velocity = Vector2.up * ascensionRate;
+        yield return new WaitForSeconds(5);
+        winScreen.BeginFade();
     }
 }

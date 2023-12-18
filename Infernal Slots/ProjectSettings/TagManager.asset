@@ -8,6 +8,7 @@ TagManager:
   - CoinCollider
   - Teleport
   - CoinBucket
+  - SoulCoin
   layers:
   - Default
   - TransparentFX
